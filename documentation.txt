@@ -1,0 +1,4 @@
+git rm -r --cached node_modules/
+npm install --save-dev nodemon
+npm install socket.io --save
+npm install ejs --save
