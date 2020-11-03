@@ -2,3 +2,17 @@ git rm -r --cached node_modules/
 npm install --save-dev nodemon
 npm install socket.io --save
 npm install ejs --save
+npm install mongoose --save
+
+
+
+MongoDB Download
+
+
+https://www.mongodb.com/try/download/community?tck=docs_server
+
+https://www.mongodb.com/products/compass
+
+
+https://www.mongodb.com/try/download/compass
+
