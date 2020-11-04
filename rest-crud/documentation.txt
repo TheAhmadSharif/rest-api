@@ -1,0 +1,30 @@
+npm install --save-dev nodemon
+npm install mongoose --save
+npm install express --save
+npm install --save body-parser
+npm install --save cors
+
+
+
+
+
+ngrok http 3200
+
+PUT Vs Patch
+
+
+
+https://stackoverflow.com/questions/21660791/what-is-the-main-difference-between-patch-and-put-request
+
+
+PUT => If user can update all or just a portion of the record, use PUT (user controls what gets updated)
+
+
+PATCH => If user can only update a partial record, say just an email address (application controls what can be updated), use PATCH.
+
+
+PUT method need more bandwidth or handle full resources instead on partial. So PATCH was introduced to reduce the bandwidth.
+
+Explanation about PATCH
+
+PATCH is a method that is not safe, nor idempotent, and allows full and partial updates and side-effects on other resources.
