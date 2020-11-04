@@ -31,38 +31,45 @@ app.get('/', (request, response) => {
 */
 
 app.get('/:id', function (request, response) {
-  let dataList = data;
-  let post_id = request.params.id;
-  let dataObject = dataList.filter((object) => {
-      return object.id == post_id;
-  });
+	  let dataList = data;
+	  let post_id = request.params.id;
+	  let dataObject = dataList.filter((object) => {
+	      return object.id == post_id;
+	  });
 
 
-  if (dataObject === undefined || dataObject.length == 0) {
-	    response.send(`The id: ${post_id} does not match any document. `)
-  } else {
-  		response.send(dataObject);
-  }
-
-
-
-  
+	  if (dataObject === undefined || dataObject.length == 0) {
+		    response.send(`The id: ${post_id} does not match any document. `)
+	  } else {
+	  		response.send(dataObject);
+	  }
 });
 
 /* 
 	Code Written by Ahmad Sharif
 	@Insert new one
-	@param {} request  // Object
+	@param {} request  
 	@param {} response
 
 */
 app.post('/', (request, response) => {
    let dataList = data;
    let newData = request.body;
-   let update_data = [...dataList, newData]
-   fs.writeFile("db/data.json", JSON.stringify(update_data), "utf8", function() {
-      response.send({success: true});
-    });
+	   if (newData.hasOwnProperty('id') && newData['id'] && 
+	   	   newData.hasOwnProperty('title') && newData['title'] &&
+	   	   newData.hasOwnProperty('body') && newData['body']) {
+
+		   	let update_data = [...dataList, newData];
+		    fs.writeFile("db/data.json", JSON.stringify(update_data), "utf8", function() {
+		      	response.send("A new data has been inserted successfully.");
+		    });
+
+	   }
+	   else {
+	   		response.send("Please send a valid data object");
+	   }
+
+   
 });
 
 /*  Code Written by Ahmad Sharif
@@ -71,46 +78,89 @@ app.post('/', (request, response) => {
 	@param {} response
 
 */
-app.patch('/:id', (request, response) => {
-    var id = request.params.id;
-    fs.writeFile("data1.json", JSON.stringify(data), "utf8", function() {
-      response.send({success: true});
-    });
+app.put('/:id', (request, response) => {
+	  let dataList = data;
+	  let post_id = request.params.id;
+	  let newData = request.body;
+	  let index = null;
+	  let dataObject = dataList.filter((object, i) => {
+		  	  if(object.id == post_id) {
+		  	  		index = i;
+		  	  		return object;
+		  	  }
+	  });
+
+	  if (dataObject === undefined || dataObject.length == 0) {
+		    response.send(`The id: ${post_id} does not match any document.`)
+	  } 
+	  else if (newData.hasOwnProperty('id') && newData['id'] && 
+	   	   newData.hasOwnProperty('title') && newData['title'] &&
+	   	   newData.hasOwnProperty('body') && newData['body']) {
+		  		dataList[index] = body_data;
+		  		fs.writeFile("db/data.json", JSON.stringify(dataList), "utf8", function() {
+			      	response.send('Data has been updated successfully');
+			    });
+	  	  		
+	  }
+  	  else {
+  	  		response.send("Please send a valid data object");
+  	  }   
+    
 });
-
-
 /*  Code Written by Ahmad Sharif
 	@Update Object By Id
 	@param {} request  // id
 	@param {} response
 */
-app.put('/:id', (request, response) => {
-  var id = request.params.id;
-  response.send("Put Method");
+app.patch('/:id', (request, response) => {
+   	  let dataList = data;
+	  let post_id = request.params.id;
+	  let newData = request.body;
+	  let index = null;
+	  let dataObject = dataList.filter((object, i) => {
+		  	  if(object.id == post_id) {
+		  	  		index = i;
+		  	  		return object;
+		  	  }
+	  });
+
+	  if (dataObject === undefined || dataObject.length == 0) {
+		    response.send(`The id: ${post_id} does not match any document.`)
+	  } 
+	  else if (newData.hasOwnProperty('id') && newData['id'] && 
+	   	   newData.hasOwnProperty('title') && newData['title']) {
+		  		dataList[index]["title"] = body_data["title"];
+
+		  		fs.writeFile("db/data.json", JSON.stringify(dataList), "utf8", function() {
+			      	response.send('Data has been updated successfully');
+			    });
+	  	  		
+	}
+	  else {
+	  		response.send("Please send a valid data object");
+	  }    
+
 });
 
 
 /*  Code Written by Ahmad Sharif
 	@Delete one By Id
-	@param {} request  // id
+	@param {} request  
 	@param {} response
-
 */
 app.delete('/:id', (request, response) => {
-  let dataList = data;
-  var id = request.params.id;
+  	  let dataList = data;
+	  let post_id = request.params.id;
+	  let dataObject = dataList.filter((object) => {
+	      return object.id == post_id;
+	  });
 
-  var lists = data.filter(x => {
-    return x.id != id;
-  });
 
-  if (lists === undefined || lists.length == 0) {
-	    response.send(`The id: ${post_id} does not match any document. `)
-  } else {
-  		fs.writeFile("db/data.json", JSON.stringify(lists), "utf8", function() {
-		    response.send({success: true});
-		});
-  }
+	  if (dataObject === undefined || dataObject.length == 0) {
+		    response.send(`The id: ${post_id} does not match any document. `)
+	  } else {
+	  		response.send(dataObject);
+	  }
   
 });
 
