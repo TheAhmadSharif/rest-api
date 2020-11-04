@@ -3,6 +3,9 @@ npm install --save-dev nodemon
 npm install socket.io --save
 npm install ejs --save
 npm install mongoose --save
+npm install express --save
+npm install --save body-parser
+npm install --save cors
 
 
 

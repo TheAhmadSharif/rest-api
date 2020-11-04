@@ -1,4 +1,3 @@
-
 const express = require('express');
 const app = express();
 
@@ -14,7 +13,7 @@ app.get('/', (request, response) => {
 
 app.get('/users/:userId', (request, response) => {
     return response.send(
-      `PUT HTTP method on user/${request.params.userId} resource`,
+      `Get HTTP method on ${request.params.userId} resource`,
     );
 });
 
