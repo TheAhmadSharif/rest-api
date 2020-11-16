@@ -6,16 +6,96 @@ npm install mongoose --save
 npm install express --save
 npm install --save body-parser
 npm install --save cors
+npm install mongoose --save
 
 
 
+
+————————————————————————————————— 
 MongoDB Download
-
+—————————————————————————————————
 
 https://www.mongodb.com/try/download/community?tck=docs_server
-
+https://treehouse.github.io/installation-guides/windows/mongo-windows.html
 https://www.mongodb.com/products/compass
-
-
 https://www.mongodb.com/try/download/compass
 
+
+Set Environment Variables in Windows >> My Computer Properties >> Advanced system settings >> Environment Variables >>> New 
+
+C:\Program Files\MongoDB\Server\4.4\
+C:\Program Files\MongoDB\Server\4.4\bin\mongo.exe
+
+
+
+Download zip version then unzip and finally run mongo.exe file to get the Mongo Shell.
+
+
+https://docs.mongodb.com/manual/reference/program/mongo/#bin.mongo
+
+run following command to run mongo in command.
+./mongo
+
+mongodb://127.0.0.1:27017/test
+http://127.0.0.1:27017/test
+C:\Program Files\MongoDB\Server\4.4\bin
+
+—————————————————————————————————
+Common Mongo Command
+—————————————————————————————————
+show dbs;
+use blog;
+db.post.insert({"name":"tutorials point"})
+db.list.insert({"title":"A Book"})
+db.post.find().pretty();
+
+show collections	
+
+
+
+service mongod status
+db.dropDatabase() // Remove DB;
+
+db.collectionName.drop() 
+db.bios.remove( { } )
+
+
+db.blogObject.deleteOne({id: 3})
+
+
+db.collectonName.count()
+db.collectonName.find().execute("executionStatus")
+db.collectonName.dropIndexes()
+db.collectonName.getIndexes()
+db.collectonName.ensureIndex({"title":1})
+
+for(i=0; i<10000; i++) {db.roll.insert({"i": i, "username": i})}
+db.roll.ensureIndex({"username": 1})
+db.roll.find({"username" : "user101"}).explain("executionStats")
+db.roll.find({"username" : "11"}).explain()
+
+db.roll.find({}, {"_id": 0})
+
+
+
+The insertOne() operation creates both the database myNewDB and the collection myNewCollection1 if they do not already exist.
+
+sudo systemctl enable mongodb
+service mongod status
+
+——————————————————————————————————————————————————————————————————
+https://stackoverflow.com/questions/21660791/what-is-the-main-difference-between-patch-and-put-request
+
+
+PUT => If user can update all or just a portion of the record, use PUT (user controls what gets updated)
+
+
+PATCH => If user can only update a partial record, say just an email address (application controls what can be updated), use PATCH.
+
+
+PUT method need more bandwidth or handle full resources instead on partial. So PATCH was introduced to reduce the bandwidth.
+
+Explanation about PATCH
+
+PATCH is a method that is not safe, nor idempotent, and allows full and partial updates and side-effects on other resources.
+——————————————————————————————————————————————————————————————————
