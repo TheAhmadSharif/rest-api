@@ -99,3 +99,13 @@ Explanation about PATCH
 
 PATCH is a method that is not safe, nor idempotent, and allows full and partial updates and side-effects on other resources.
 ——————————————————————————————————————————————————————————————————
+
+————————————————————————————
+Mongoose.connection events
+————————————————————————————
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once('connected', function() {
+  console.log('Express connected successfully with MongoDB.');
+});
